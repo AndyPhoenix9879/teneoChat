@@ -81,12 +81,14 @@ export default {
           success: function(data, status){
             console.log(data.output.text);
             console.log(status);
-
-            db.ref("message/").update({
+            db.ref().set({
+              messageType: "",
+              messageContent: "",
+            });
+            db.ref().set({
               messageType: msg,
               messageContent: data.output.text,
             });
-
           }
         })
         
