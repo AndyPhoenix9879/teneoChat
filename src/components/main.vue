@@ -77,17 +77,16 @@ export default {
         $.ajax({
           type: "POST",
           contentType: "application/x-www-form-urlencoded",
-          url: "https://teammoto-2e4527.bots.teneo.ai/message_handling_0315tnfm559zzvzmghw7tsvskt/?viewtype=tieapi&userinput="+msg,
-          success: function(data, status){
+          url: "https://teammoto-2e4527.bots.teneo.ai/message_handling_0315tnfm559zzvzmghw7tsvskt/?viewtype=tieapi&userinput="+msg+"+"+usrInp,
+          success: function(data, status, sessionID){
             console.log(data.output.text);
+            console.log(sessionID.responseJSON.sessionId);
             console.log(status);
-            db.ref().set({
-              messageType: "",
-              messageContent: "",
-            });
+            
             db.ref().set({
               messageType: msg,
               messageContent: data.output.text,
+              sessionID: sessionID.responseJSON.sessionId,
             });
           }
         })
