@@ -83,10 +83,11 @@ export default {
             console.log(sessionID.responseJSON.sessionId);
             console.log(status);
             
-            db.ref().set({
+            db.ref("/message").set({
               messageType: msg,
               messageContent: data.output.text,
               sessionID: sessionID.responseJSON.sessionId,
+              test: usrInp,
             });
           }
         })
